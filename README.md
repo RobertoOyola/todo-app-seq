@@ -1,0 +1,16 @@
+$PH = echo '<Password>' | docker run --rm -i datalust/seq config hash
+
+----------------------------------------------------------------------
+
+docker run --name seq -d --restart unless-stopped `
+  -e ACCEPT_EULA=Y `
+-e SEQ_API_CANONICALURI=https://seq.example.com `
+  -e SEQ_FIRSTRUN_ADMINPASSWORDHASH=$PH `
+-v /path/to/seq/data:/data `
+  -p 80:80 -p 5341:5341 `
+datalust/seq
+
+----------------------------------------------------------------------
+
+npm install pino pino-http pino-seq
+
